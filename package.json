@@ -1,0 +1,30 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danrley-Ruan-Saquetti/dependency-inversion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Danrley-Ruan-Saquetti/dependency-inversion/issues"
+  },
+  "homepage": "https://github.com/Danrley-Ruan-Saquetti/dependency-inversion#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.3",
+    "tslib": "^2.6.2",
+    "tsx": "^3.13.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13"
+  }
+}
