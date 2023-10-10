@@ -1,44 +1,39 @@
-import { Inversion } from "./inversion";
-
-interface NotificacaoService {
-  enviarMensagem(mensagem: string): void;
-}
-
-const KEY = "NotificacaoService";
+import { Inversion } from './inversion'
 
 @Inversion.Injectable()
-class EmailService implements NotificacaoService {
-  enviarMensagem(mensagem: string) {
-    console.log(`Enviando e-mail: ${mensagem}`);
+class Service {
+  perform() {
+    console.log("Service")
   }
 }
 
 @Inversion.Injectable()
-class SMSNotificationService implements NotificacaoService {
-  enviarMensagem(mensagem: string) {
-    console.log(`Enviando SMS: ${mensagem}`);
+class Create extends Service {
+
+  perform() {
+    console.log("Create")
   }
 }
-
-Inversion.container.bind<NotificacaoService>(KEY).to(EmailService);
-// Inversion.container
-//   .bind<NotificacaoService>("NotificacaoService")
-//   .to(SMSNotificationService);
 
 @Inversion.Injectable()
-class NotificacaoServiceClient {
-  constructor(
-    @Inversion.Inject(KEY)
-    private notificacaoService: NotificacaoService,
-  ) {}
+class Update extends Service {
 
-  enviarNotificacao(mensagem: string) {
-    this.notificacaoService.enviarMensagem(mensagem);
+  perform() {
+    console.log("Update")
   }
 }
 
-const notificacaoServiceClient = Inversion.container.resolve(
-  NotificacaoServiceClient,
-);
+@Inversion.Injectable()
+class Controller {
+  constructor(@Inversion.Inject(Service) private service: Service) {
 
-notificacaoServiceClient.enviarNotificacao("Olá, mundo!");
+  }
+
+  perform() {
+    this.service.perform()
+  }
+}
+
+const controller = Inversion.container.resolve(Controller)
+
+controller.perform()

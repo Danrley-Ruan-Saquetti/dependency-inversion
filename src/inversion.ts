@@ -6,7 +6,7 @@ import {
 } from "inversify";
 
 export class Inversion {
-  static readonly container = new Container();
+  static readonly container = new Container({ autoBindInjectable: true, skipBaseClassChecks: true, defaultScope: 'Singleton' });
   private readonly containerLocal?: Container;
 
   constructor(isLocal = false) {
